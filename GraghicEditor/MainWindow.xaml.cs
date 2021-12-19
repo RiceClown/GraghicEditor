@@ -25,16 +25,16 @@ namespace GraghicEditor
 
         private void canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if(canvas.Children.OfType<Line>().FirstOrDefault(x => x.IsMouseOver == true) == null)
+            if(!canvas.Children.OfType<Line>().Any(x => x.IsMouseOver == true))
                 p1 = Mouse.GetPosition(canvas);
         }
 
         private void canvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (canvas.Children.OfType<Line>().FirstOrDefault(x => x.IsMouseOver == true) == null)
+            if (!canvas.Children.OfType<Line>().Any(x => x.IsMouseOver == true))
             {
                 p2 = Mouse.GetPosition(canvas);
-                DrawLine(p1, p2, false);
+                DrawLine(p1, p2);
             }
         }
 
@@ -47,7 +47,7 @@ namespace GraghicEditor
             //}
         }
 
-        private void DrawLine(Point start, Point stop, bool move)
+        private void DrawLine(Point start, Point stop)
         {
             Line line = new Line();
             line.Stroke = Brushes.Black;
@@ -66,9 +66,7 @@ namespace GraghicEditor
             canvas.Children.Add(line);
         }
 
-
-
-        #region LineActions
+        #region LinesActions
 
         //private void Line_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         //{
@@ -135,6 +133,11 @@ namespace GraghicEditor
             rotatableControl.CaptureMouse();
         }
 
+        private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Line_MouseLeave(object sender, MouseEventArgs e)
         {
             ((Line)sender).Stroke = Brushes.Black;
@@ -146,7 +149,5 @@ namespace GraghicEditor
         }
 
         #endregion
-
-
     }
 }

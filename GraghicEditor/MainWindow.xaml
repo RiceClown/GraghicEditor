@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraghicEditor"
         mc:Ignorable="d"
-        Title="Graphic  editor" Height="450" Width="800">
-    <Canvas Name="canvas" MouseLeftButtonDown="canvas_MouseLeftButtonDown" MouseLeftButtonUp="canvas_MouseLeftButtonUp"  Background="Transparent">
+        Title="Graphic  editor" Height="476" Width="867">
+    <Grid x:Name="MainGrid" Background="White" Height="auto" Width="auto">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         
-    </Canvas>
+        <Canvas x:Name="canvas" 
+                Grid.Column="0" 
+                MouseLeftButtonDown="canvas_MouseLeftButtonDown" 
+                MouseLeftButtonUp="canvas_MouseLeftButtonUp"
+                Background="White"/>
+
+        <Border Grid.Column="1" x:Name="mainBorder">
+            <StackPanel x:Name="mainStackPanel">
+
+                <TextBlock Text="Tool:" HorizontalAlignment="Left" Margin="5"/>
+                <ComboBox x:Name="ToolComboBox" Margin="5">
+                    <ComboBoxItem Content="Draw"/>
+                    <ComboBoxItem Content="Move"/>
+                    <ComboBoxItem Content="Rotate"/>
+                    <ComboBoxItem Content="Scale"/>
+                    <ComboBoxItem Content="Mirror"/>
+                    <ComboBoxItem Content="Group"/>
+                </ComboBox>
+
+                <TextBlock Text="Group:" HorizontalAlignment="Left" Margin="5"/>
+                <ComboBox x:Name="GroupComboBox" Margin="5"/>
+                <Grid>
+                    <Button x:Name="AddGroupButton" Content="Add group" HorizontalAlignment="Right" Margin="5"/>
+                    <Button x:Name="DeleteGroupButton" Content="Delete group" HorizontalAlignment="Left" Margin="5"/>
+                </Grid>
+
+            </StackPanel>
+        </Border>
+    </Grid>
 </Window>
